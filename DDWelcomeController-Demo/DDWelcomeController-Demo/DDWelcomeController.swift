@@ -119,7 +119,8 @@ class WelcomeAnimator:UIPercentDrivenInteractiveTransition,UIViewControllerAnima
         let translation = recognizer.translationInView(recognizer.view!.superview!)
         if(translation.y < 0){
             let value = (translation.y < maxMov) ? maxMov : translation.y
-            let progress = value / maxMov
+            var progress = value / maxMov
+            progress = min(max(progress, 0.01), 0.99)
             switch recognizer.state {
             case .Changed:
                 updateInteractiveTransition(progress)
