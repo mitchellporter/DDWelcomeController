@@ -1,5 +1,5 @@
 # DDWelcomeController
-A Solution for welcome/tutorial page for IOS App.
+A welcome/tutorial page controller for IOS App.
 
 ![demo](https://github.com/wddwycc/DDWelcomeController/blob/master/demo.gif)
 
