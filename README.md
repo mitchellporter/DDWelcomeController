@@ -12,7 +12,12 @@ self.presentViewController(WelcomeVC, animated: true, completion: nil)
 ```
 
 ##Author 
-闻端Carl wddwyss@gmail.com
+闻端Carl 
+wddwyss@gmail.com  
+[monk-studio](http://www.monk-studio.com)
+
+##Requirements
+IOS >= 7.0
 
 ##License 
 The project is under MITS license, see more detail in the License file in the project
