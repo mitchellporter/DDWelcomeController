@@ -20,10 +20,9 @@ func delay(#seconds: Double, completion:()->()) {
 class DDWelcomeController: UIViewController,UIGestureRecognizerDelegate{
     var views:[UIView]!
     var scrollView:UIScrollView!
-    var pageControler:UIPageControl!
     var panGesture:UIPanGestureRecognizer!
     var animator = WelcomeAnimator()
-    
+    let pageBottomSpace = 40
     
     init(views:[UIView]){
         super.init()
@@ -45,18 +44,29 @@ class DDWelcomeController: UIViewController,UIGestureRecognizerDelegate{
         var index = 0
         for member in views{
             member.frame = CGRectMake(CGFloat(index) * self.scrollView.bounds.width, 0, self.scrollView.bounds.width, self.scrollView.bounds.height)
-            ++index
             self.scrollView.addSubview(member)
+            let pageControler = UIPageControl()
+            pageControler.numberOfPages =  self.views.count
+            pageControler.currentPage = index
+            pageControler.setTranslatesAutoresizingMaskIntoConstraints(false)
+            pageControler.numberOfPages = views.count
+            member.addSubview(pageControler)
+            let constraintsH = NSLayoutConstraint.constraintsWithVisualFormat("|[pageController]|", options: nil, metrics: nil, views: ["pageController":pageControler])
+            let constraintsV = NSLayoutConstraint.constraintsWithVisualFormat("V:[pageController(20)]-(bottomSpace)-|", options: nil, metrics: ["bottomSpace":pageBottomSpace], views: ["pageController":pageControler])
+            member.addConstraints(constraintsH)
+            member.addConstraints(constraintsV)
+            
+            ++index
         }
         self.panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
         let lastView = views.last
         lastView?.addGestureRecognizer(self.panGesture)
         
+
+        
         //transitioning animation relevant
         self.transitioningDelegate = self
 
-        
-        
         
         
     }
@@ -69,6 +79,8 @@ class DDWelcomeController: UIViewController,UIGestureRecognizerDelegate{
             self.animator.handlePan(gesture)
         }
     }
+    
+    
 }
 
 extension DDWelcomeController:UIViewControllerTransitioningDelegate{
