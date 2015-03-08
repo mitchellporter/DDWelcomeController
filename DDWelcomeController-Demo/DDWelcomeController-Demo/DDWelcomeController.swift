@@ -55,7 +55,6 @@ class DDWelcomeController: UIViewController,UIGestureRecognizerDelegate{
             let constraintsV = NSLayoutConstraint.constraintsWithVisualFormat("V:[pageController(20)]-(bottomSpace)-|", options: nil, metrics: ["bottomSpace":pageBottomSpace], views: ["pageController":pageControler])
             member.addConstraints(constraintsH)
             member.addConstraints(constraintsV)
-            
             ++index
         }
         self.panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
@@ -135,6 +134,13 @@ class WelcomeAnimator:UIPercentDrivenInteractiveTransition,UIViewControllerAnima
                 }
             default:
                 break
+            }
+        }else{
+            switch recognizer.state{
+            case .Changed:
+                updateInteractiveTransition(0)
+            default:
+                cancelInteractiveTransition()
             }
         }
     }
