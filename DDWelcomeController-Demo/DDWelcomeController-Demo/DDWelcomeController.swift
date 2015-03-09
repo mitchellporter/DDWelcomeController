@@ -126,8 +126,12 @@ class WelcomeAnimator:UIPercentDrivenInteractiveTransition,UIViewControllerAnima
             switch recognizer.state{
             case .Changed:
                 updateInteractiveTransition(0)
-            default:
+            case .Cancelled,.Ended:
+                let transitionLayer = storedContext!.containerView().layer
+                transitionLayer.beginTime = CACurrentMediaTime()
                 cancelInteractiveTransition()
+            default:
+                break
             }
         }
     }

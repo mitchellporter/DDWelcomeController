@@ -1,5 +1,5 @@
 # DDWelcomeController
-A welcome/tutorial page controller for IOS App.
+A welcome/tutorial page controller for IOS App with interactive transition.
 
 ![demo](https://github.com/wddwycc/DDWelcomeController/blob/master/demo.gif)
 
@@ -14,8 +14,8 @@ self.presentViewController(WelcomeVC, animated: true, completion: nil)
 ##Author 
 闻端Carl 
 wddwyss@gmail.com  
-[monk-studio](http://www.monk-studio.com)
-
+[monk-studio](http://www.monk-studio.com)  
+Twitter:@wddwycc
 ##Requirements
 IOS >= 7.0
 
